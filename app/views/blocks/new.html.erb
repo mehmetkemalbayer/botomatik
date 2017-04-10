@@ -1,0 +1,74 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="page-header">Yeni Konuşma Parçası</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">Title</span>
+                <input type="text" class="form-control" placeholder="Konuşma Parçası için isim giriniz" aria-describedby="sizing-addon1">
+            </div>
+        </div>
+    </div>         
+    <br/>   
+    <div class="row" id="galeries">   
+        <div class="col-sm-2" id="new_thumbnail">
+            <div class="thumbnail" style="display:table-cell;vertical-align:middle">                
+                <a href="#" class="btn btn-primary btn-block new-galery" role="button">Yeni Galeri Seçeneği</a>                
+            </div>          
+        </div>     
+    </div>
+</div>
+<div class="col-sm-2" id="thumbnail_schema">
+    <div class="thumbnail" >
+        <%= image_tag("image_placeholder") %>
+        <br/>
+        <a href="#" class="btn btn-primary btn-block" role="button">Resim Ekle</a>     
+        <br/>         
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-font"></span></span>
+            <input type="text" class="form-control" placeholder="Başlık" aria-describedby="basic-addon1">
+        </div>                    
+        <br/>
+        <textarea class="form-control" placeholder="Açıklama"></textarea>
+        <br />
+        <a href="#" class="btn btn-primary btn-block" role="button">Hazır seçim</a>                                
+    </div>    
+</div>
+
+
+
+<script> 
+$(document).ready(function() {
+    $("#thumbnail_schema").hide();
+    add_galery();    
+    $(".new-galery").click(function(event) {
+        event.preventDefault();
+        add_galery();        
+    });
+});
+function add_galery()
+{
+    var schema = $("#thumbnail_schema").clone();      
+    schema.show().insertBefore("#new_thumbnail");        
+    equalHeight($("#galeries .thumbnail")); 
+}
+function equalHeight(group) {    
+    var tallest = 0;    
+    var widest = 0;
+    group.each(function() {       
+        var thisHeight = $(this).height();       
+        if(thisHeight > tallest) {          
+            tallest = thisHeight;       
+        }    
+        var thisWidth = $(this).width();
+        if(thisWidth > widest) {
+            widest =thisWidth;
+        }
+    });    
+    group.each(function() { $(this).height(tallest); })
+    group.each(function() { $(this).width(widest); })
+}
+</script>
