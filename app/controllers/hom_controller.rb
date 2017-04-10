@@ -1,2 +1,0 @@
-class HomController < ApplicationController
-end

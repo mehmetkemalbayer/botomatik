@@ -1,0 +1,38 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-sm-4">
+            <h1 class="page-header">Yeni Konuşma Parçası</h1>
+        </div>        
+    </div>
+    <%= form_for @block, url: {action: "create"} do |b| %>
+        
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1">Title</span>
+                    <%= b.text_field :name, class: "form-control", placeholder: "Konuşma Parçası için isim giriniz"  %>                    
+                </div>
+            </div>
+            
+        </div>         
+        <br/>   
+        <div class="row">
+            <div class="col-sm-4" id="thumbnail_schema">
+                <div class="thumbnail" >                                                
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-font"></span></span>
+                        <%= b.text_area :text, class: "form-control", placeholder: "Açıklama" %>                    
+                    </div>                                                 
+                    <br />
+                    <a href="#" class="btn btn-primary btn-block" role="button">Hazır seçim</a>                                
+                </div>    
+            </div>        
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-sm-4">
+                    <%= link_to "Kaydet", blocks_path(b), :method => 'post', class: "btn btn-success btn-lg btn-block" %>
+                </div>
+        </div>
+    <% end %>
+</div>

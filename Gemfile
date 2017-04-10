@@ -9,7 +9,7 @@ gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
+gem 'mongoid'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0.rc1'
 # Use Puma as the app server
