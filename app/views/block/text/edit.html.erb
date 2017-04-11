@@ -24,14 +24,14 @@
                     </div>    
                     <hr/>                 
                     <%= b.fields_for :quick_replies do |qr| %>
-                        <div class="input-group" style="width: 100%">                            
-                            <%= qr.text_field :title, class: "form-control", placeholder: "Kullanıcıya gösterilecek mesaj" %>                            
-                        </div>
-                        <br/>  
-                        <div class="input-group" style="width: 100%">                                                        
-                            <%= qr.text_field :payload, class: "form-control input-block-level", placeholder: "Seçilecen menü adımı" %>
-                        </div>    
-                        <hr/>    
+                    <div class="input-group" style="width: 100%">                            
+                        <%= qr.text_field :title, class: "form-control", placeholder: "Kullanıcıya gösterilecek mesaj" %>                            
+                    </div>
+                    <br/>  
+                    <div class="input-group" style="width: 100%">                                                        
+                        <%= qr.text_field :payload, class: "form-control input-block-level", placeholder: "Seçilecen menü adımı" %>
+                    </div>    
+                    <hr/>    
                     <% end %>                                                                                                                                
                 </div>    
             </div>        

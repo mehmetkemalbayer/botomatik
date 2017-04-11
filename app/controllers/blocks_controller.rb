@@ -14,6 +14,15 @@ class BlocksController < ApplicationController
     end
     
     def create
+        @block = Block.new(block_params)
+
+        if (@block.save)
+            respond_to do |format|
+                format.html {render :template => "block/text/edit"}
+            end            
+        end        
     end
-    
+    def block_params
+    params.require(:block).permit(:name, :text, :quick_replies)
+  end
 end
