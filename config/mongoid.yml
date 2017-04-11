@@ -145,3 +145,12 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+production:
+  clients:
+    default:
+      database: heroku_0ts74847
+      hosts: 
+        - ds157500.mlab.com:57500
+      options:
+        user: be_rw
+        password: be_rw
