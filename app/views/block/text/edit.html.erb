@@ -22,7 +22,17 @@
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-font"></span></span>
                         <%= b.text_area :text, class: "form-control", placeholder: "Açıklama" %>                    
                     </div>    
-                    <hr/>                 
+                    <hr/> 
+                    <% @block.quick_replies.each do |reply|  %>                    
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <span class="glyphicon glyphicon-font"></span><%= reply.title %><span class="glyphicon glyphicon-envelope"></span><%= reply.payload %>
+                                <%= link_to "Sil", destroy_blocks_quick_reply_path(@block.id, reply.id), :confirm => "Hızlı cevabı silmek istediğinize emin misiniz?", :method => :delete, class:"btn btn-danger btn-sm pull-right" %>
+                            </div>
+                        </div>                                                                    
+                        <hr/>                     
+                    <% end %>
+                                    
                     <%= b.fields_for :quick_replies do |qr| %>
                     <div class="input-group" style="width: 100%">                            
                         <%= qr.text_field :title, class: "form-control", placeholder: "Kullanıcıya gösterilecek mesaj" %>                            
@@ -38,9 +48,12 @@
         </div>
         <br/>
         <div class="row">
-            <div class="col-sm-4">
-                    <%= b.submit "Kaydet", class: "btn btn-success btn-lg btn-block" %>
-                </div>
+            <div class="col-sm-2">
+                <%= b.submit "Kaydet", class: "btn btn-success btn-lg btn-block" %>
+            </div>
+            <div class="col-sm-2">
+                <%= link_to "Sil", destroy_block_path(@block.id), :confirm => "Yazışma parçasını silmek istediğinize emin misiniz?", class: "btn btn-danger btn-lg btn-block", :method => :delete %>
+            </div>
         </div>
     <% end %>
     <div id="quick_reply" style="display: none">

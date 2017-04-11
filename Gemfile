@@ -10,7 +10,7 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mongoid'
-gem "mongoid-indifferent-access"
+gem "mongoid-indifferent-access", require: "mongoid_indifferent_access"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0.rc1'
 # Use Puma as the app server
