@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'  
   get '/blocks/galery/new', to: "blocks#new_galery"
   get '/blocks/galery/:id/edit', to: "blocks#edit_galery", as: "edit_galery_block"
+  get '/blocks/free_text/new', to: "blocks#new_free_text"
   get '/blocks/text/new', to: "blocks#new_text"
   get '/blocks/text/:id/edit', to: "blocks#edit_text", as: "edit_text_block"
   post '/blocks', to: "blocks#create"
