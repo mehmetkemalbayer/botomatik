@@ -5,11 +5,11 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: heroku_0ts74847
+      database: botomatik_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - ds157500.mlab.com:57500
+        - localhost:27017
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -24,10 +24,10 @@ development:
         #     - use: web
 
         # The name of the user for authentication.
-        user: 'be_rw'
+        # user: 'be_rw'
 
         # The password of the user for authentication.
-        password: 'be_rw'
+        # password: 'be_rw'
 
         # The user's database roles.
         # roles:
@@ -145,3 +145,12 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+production:
+  clients:
+    default:
+      database: heroku_0ts74847
+      hosts: 
+        - ds157500.mlab.com:57500
+      options:
+        user: be_rw
+        password: be_rw

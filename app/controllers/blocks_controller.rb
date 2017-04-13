@@ -11,6 +11,13 @@ class BlocksController < ApplicationController
             format.html { render :template => "block/text/new" }
         end        
     end
+    def new_free_text
+        @block = Block.new
+        respond_to do |format|
+            format.html { render :template => "block/free_text/new" }
+        end        
+    end
+
     def edit_text        
         @block = Block.where(:name => params[:id].upcase).first
         respond_to do |format|
@@ -28,13 +35,13 @@ class BlocksController < ApplicationController
     def destroy
         if(Block.find(params[:id]).destroy)
             redirect_to root_path
-        end
-        
+        end        
     end
     
     def edit
         @block = Block.where(:name => block_params[:name]).first
     end
+
     def update
         @block = Block.where(:name => block_params[:name]).first 
         @quick_reply = QuickReply.new(title: params[:block][:quick_replies][:title], payload: params[:block][:quick_replies][:payload] )
@@ -43,26 +50,41 @@ class BlocksController < ApplicationController
         end
         @block.name = params[:block][:name].upcase
         @block.text = params[:block][:text]
+
         if (@block.save)
             redirect_to root           
         end    
-    end    
+    end
+
     def create
         @block = Block.where(:name => block_params[:name]).first
         unless (@block) 
             @block = Block.new(block_params)
         end
-                
-        @quick_reply = QuickReply.new(title: params[:block][:quick_replies][:title], payload: params[:block][:quick_replies][:payload] )
-        @block.quick_replies.push(@quick_reply)          
-        @block.name = params[:block][:name]
-        @block.text = params[:block][:text]      
+        @block.content_type = "text"
+        fill_block_info      
         if (@block.save)
             respond_to do |format|
                 format.html {render :template => "block/text/edit/"}
             end            
         end        
     end
+    def create_free_text
+        @block = Block.where(:name => block_params[:name]).first
+        @block.action = params[:block][:action]
+        if (@block.save)
+            respond_to do |format|
+                format.html {render :template => "block/free_text/edit/"}
+            end            
+        end
+    end
+    def fill_block_info
+        @quick_reply = QuickReply.new(title: params[:block][:quick_replies][:title], payload: params[:block][:quick_replies][:payload] )
+        @block.quick_replies.push(@quick_reply)                  
+        @block.name = params[:block][:name].upcase
+        @block.text = params[:block][:text]
+    end
+    
     def block_params
         params.require(:block).permit(:name, :text, quick_replies_attributes: [:title, :payload] )
     end
