@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/blocks/text/new', to: "blocks#new_text"
   get '/blocks/text/:id/edit', to: "blocks#edit_text", as: "edit_text_block"
   post '/blocks', to: "blocks#create"
-  patch '/blocks/:id', to: "blocks#edit", as: "update_block"
+  patch '/blocks/text/:id/edit', to: "blocks#update", as: "update_block"
   delete '/blocks/:id', to: "blocks#destroy", as: "destroy_block"
   delete '/blocks/:id/quick_replies/:quick_reply_id', to: "blocks#destroy_quick_reply", as: "destroy_blocks_quick_reply"
 end

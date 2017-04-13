@@ -38,7 +38,9 @@ class BlocksController < ApplicationController
     def update
         @block = Block.where(:name => block_params[:name]).first 
         @quick_reply = QuickReply.new(title: params[:block][:quick_replies][:title], payload: params[:block][:quick_replies][:payload] )
-        @block.quick_replies.push(@quick_reply)          
+        unless @block.quick_replies.where(title: params[:block][:quick_replies][:title], payload: params[:block][:quick_replies][:payload])
+            @block.quick_replies.push(@quick_reply)          
+        end
         @block.name = params[:block][:name].upcase
         @block.text = params[:block][:text]
         if (@block.save)
